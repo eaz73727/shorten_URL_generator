@@ -22,4 +22,17 @@ router.post('/', (req, res) => {
     })
 })
 
+router.get('/:code', (req, res) => {
+  const code = req.params.code
+  URL.findOne({ shorten_URL_code: code }).lean()
+    .then(data => {
+      if (!data) {
+        res.send('render404')
+      } else {
+        res.redirect(data.origin_URL)
+      }
+    })
+    .catch(error => console.log(error))
+})
+
 module.exports = router
