@@ -2,4 +2,15 @@
   <input type="url" name="URL" placeholder="請輸入網址 ..." value="{{inputURL}}" required>
   <button type="submit">here</button>
 </form>
-{{#if code}} http://localhost:3000/{{code}}{{/if}}
+{{#if code}} <p id="copy">http://localhost:3000/{{code}}</p> {{/if}}
+
+
+<button type="button" onclick="copyEvent('#copy')">Copy</button>
+
+<script>
+  function copyEvent(id) {
+    const str = document.querySelector(id)
+    window.getSelection().selectAllChildren(str)
+    document.execCommand("Copy")
+  }
+</script>
