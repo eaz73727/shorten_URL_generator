@@ -1,3 +1,10 @@
+{{#if code}}
 <div>
   <h3>Error!Can't find "http://localhost:3000/{{code}}"</h3>
 </div>
+{{/if}}
+{{#if error}}
+<div>
+  <p>{{error}}</p>
+</div>
+{{/if}}

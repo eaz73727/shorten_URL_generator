@@ -15,7 +15,10 @@ router.post('/', (req, res) => {
       if (!data) {
         URL.create({ origin_URL: inputURL, shorten_URL_code: code })
           .then(() => { res.render('index', { inputURL, code }) })
-          .catch(error => console.log(error))
+          .catch(error => {
+            console.log(error)
+            res.render('error', { error: error.message })
+          })
       } else {
         res.render('index', { inputURL: data.origin_URL, code: data.shorten_URL_code })
       }
@@ -27,12 +30,15 @@ router.get('/:code', (req, res) => {
   URL.findOne({ shorten_URL_code: code }).lean()
     .then(data => {
       if (!data) {
-        res.send('error', { code })
+        res.render('error', { code })
       } else {
         res.redirect(data.origin_URL)
       }
     })
-    .catch(error => console.log(error))
+    .catch(error => {
+      console.log(error)
+      res.render('error', { error: error.message })
+    })
 })
 
 module.exports = router
