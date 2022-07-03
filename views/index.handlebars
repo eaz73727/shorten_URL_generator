@@ -1,11 +1,28 @@
-<form action="/" method="POST">
-  <input type="url" name="URL" placeholder="請輸入網址 ..." value="{{inputURL}}" required>
-  <button type="submit">here</button>
-</form>
-{{#if code}} <p id="copy">http://localhost:3000/{{code}}</p> {{/if}}
+<div class="container">
+  <div class="row position-absolute top-50 start-50 translate-middle">
+    <div class="col-3 border border-secondary" style="width:20rem;">
+      <form action="/" method="POST">
+        <label for="URL" class="form-label">輸入網址以獲得短網址</label>
+        <img src="https://assets-lighthouse.alphacamp.co/uploads/image/file/16716/ExportedContentImage_00.png"
+          class="rounded mx-auto d-block" alt="..." style="width:50%;height:50%;">
+        <input class="form-control mt-3" id="URL" type="url" name="URL" placeholder="請輸入網址 ..." value="{{inputURL}}"
+          required>
+        <button class="btn btn-primary m-1 align-self-end" type="submit">產生短網址</button>
+
+      </form>
+      {{#if code}}
+      <p>Success! Please use this link</p>
+      <a class="link-secondary text-align-center" id="copy"
+        href="http://localhost:3000/{{code}}">http://localhost:3000/{{code}}</a>
+      <button class="btn btn-primary m-1" type="button" onclick="copyEvent('#copy')">Copy</button>
+      {{/if}}
+    </div>
+  </div>
+</div>
 
 
-<button type="button" onclick="copyEvent('#copy')">Copy</button>
+
+
 
 <script>
   function copyEvent(id) {
