@@ -27,7 +27,7 @@ router.get('/:code', (req, res) => {
   URL.findOne({ shorten_URL_code: code }).lean()
     .then(data => {
       if (!data) {
-        res.send('render404')
+        res.send('error', { code })
       } else {
         res.redirect(data.origin_URL)
       }
